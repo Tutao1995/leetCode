@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大数相加</title>
+</head>
+<body>
+<h1>大数相加</h1>
+<h3>题目描述</h3>
+<p>
+    如何实现两个非常大的数字(已经超出了Number范围)的加法运算。
+    注意由于这两个已经超过了Number范围，因此不能用Number存，这里我们选择使用字符串存储。
+</p>
+<h3>思路</h3>
+<p>
+    我们只要将两个数字前面补0至相同的长度，然后从低位到高位进行相加， 同时用一个变量记录进位的信息即可。
+</p>
+<h3>for example</h3>
+<input type="number" id="firstNum"  />+
+<input type="number" id="secondNum" />
+<button onclick="sum()">=</button>
+<input type="number" id="total" />
+<button onclick="reset()">❌</button>
+
+</body>
+<script>
+    const sum = () => {
+        let first = document.querySelector('#firstNum').value;
+        let second = document.querySelector('#secondNum').value;
+        document.querySelector('#total').value = bigNumberSum(first,second)
+    };
+    const reset = () => {
+        document.querySelector('#firstNum').value = '';
+        document.querySelector('#secondNum').value = '';
+        document.querySelector('#total').value = '';
+    };
+    const bigNumberSum = (a,b) => {
+        a = a.toString();
+        b = b.toString();
+        let cur = 0;
+        while(cur<a.length || cur < b.length){
+            if(!a[cur]){
+                a = '0' + a;
+            }
+            else if(!b[cur]){
+                b= '0' + b
+            }
+            cur ++
+        }
+        let curried = 0;
+        let res = [];
+        for(let i = a.length-1;i>-1;i--){
+            let sum = curried + Number(a[i]) + Number(b[i]);
+            res[i] = sum%10;
+            if(curried > 9){
+                curried = 1
+            }
+            else{
+                curried = 0;
+            }
+        }
+        if(curried === 1){
+            res.unshift(1)
+        }
+        return res.join('');
+    };
+</script>
+</html>
