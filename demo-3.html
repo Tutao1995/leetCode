@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>前缀树（字典树）</title>
+</head>
+<body>
+<h1>相关概念</h1>
+<p>前缀树（Trie）：</p>
+<h1>大数相加</h1>
+<h3>题目描述</h3>
+<p>
+    Implement a trie with insert, search, and startsWith methods.
+</p>
+<h3>思路</h3>
+<p>
+    这是一道很直接的题目，上来就让你实现前缀树（字典树）。这算是基础数据结构中的 知识了，不清楚什么是字典树的可以查阅相关资料。
+
+    我们看到题目给出的使用方法new Trie, insert,search和startWith.
+
+    为了区分search和startWith我们需要增加一个标示来区分当前节点是否是某个单词的结尾。
+    每次 insert 我们其实都是从根节点出发，一个一个找到我们需要添加的节点，修改 children 的值.
+
+    我们应该修改哪一个 child 呢？ 我们需要一个函数来计算索引。
+    其实不管 insert， search 和 startWith 的逻辑都是差不多的，都是从 root 出发， 找到我们需要操作的 child， 然后进行相应操作（添加，修改，返回）
+</p>
+<h3>for example</h3>
+
+
+</body>
+<script>
+    function TrieNode(val){
+        this.val = val;
+        this.isWord = false;
+        this.children = [];
+    }
+    function computedIndex(c){
+        return c.charCodeAt(0) - 'a'.charCodeAt(0)
+    }
+
+    let Trie = function(){
+        this.root = new TrieNode(null)
+    };
+
+    Trie.prototype.insert = function(word){
+        let ws = this.root;
+        for(let i=0;i<word.length;i++) {
+            const c = word[i];
+            const current = computedIndex(c);
+            if(!ws.children[current]){
+                ws.children[current] = new TrieNode(c)
+            }
+            ws = ws.children[current]
+        }
+        ws.isWord = true;
+    };
+    Trie.prototype.search = function (word) {
+      let ws = this.root;
+      for(let i=0;i<word.length;i++){
+        const c = word[i];
+        const current = computedIndex(c);
+        if(!ws.children[current]){
+            return false
+        }
+        ws = ws.children[current]
+      }
+      return ws.isWord
+    };
+    Trie.prototype.startWith = function(prefix){
+        let ws = this.root;
+        for(let i=0;i<prefix.length;i++){
+            let c = prefix[i];
+            let current = computedIndex(c);
+            if(!ws.children[current]) return false;
+            ws = ws.children[current];
+        }
+        return true
+    };
+
+    var obj = new Trie();
+    obj.insert('apple');
+    console.log(obj.search('app'));
+    obj.insert('app');
+    console.log(obj.search('app'));
+    console.log(obj.startWith('app'));
+    console.log(obj);
+</script>
+</html>
