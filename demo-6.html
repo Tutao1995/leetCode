@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DP(动态规划)</title>
+</head>
+<body>
+<h1>DP(动态规划)</h1>
+<h3>题目描述</h3>
+<p>
+    给定几种面额的硬币和一个总额，使用最少的硬币凑成这个总额。
+</p>
+<h3>思路</h3>
+<p>
+    使用了动态规划（DP），将从 0 到目标额度所需的最小硬币数都列出来。
+</p>
+<h3>for example</h3>
+<p>
+
+</p>
+
+</body>
+<script>
+    //动态规划核心思想就是把原问题分解成子问题进行求解，也就是分治的思想
+    //环境：重叠子问题   最优子结构   无后效性
+    //过程：1.划分状态，即划分子问题   2.状态表示，即如何让计算机理解子问题  3.状态转移，即父问题如何由子问题推导出来 4.确定边界  确定初始状态、最小子问题、最终状态
+    //模型：1.线性模型  2.区间模型  3.树状模型
+    //套路：1.自底向上  2.自顶向下
+
+
+    //斐波那契数列   f(1) = 0  f(2) = 1  f(n) = f(n-1) + f(n-2)
+
+    const fibonacci = (num) => {
+        if(num === 1 || num === 2){
+            return 1
+        }
+        return fibonacci(num-1) + fibonacci(num-2)
+    };
+    console.log(fibonacci(5));
+
+
+
+
+
+
+
+    const minCoins = (coins,amount) => {
+        let max = amount + 1;
+        let dp = new Array(amount + 1);
+        dp.fill(max);
+        dp[0] = 0;
+
+        for (let i = 1; i < max; i++) {
+            for (let j = 0; j < coins.length; j++) {
+                if (coins[j] <= i) {
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1)
+                }
+            }
+        }
+        return dp[amount] > amount ? -1 : dp[amount]
+    };
+    const arr = [1,2,3,4,5,6];
+    console.log(minCoins(arr,12))
+</script>
+</html>

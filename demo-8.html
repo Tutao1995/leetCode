@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>整数反转</title>
+</head>
+<body>
+<h1>整数反转</h1>
+<h3>地址：<a href="https://leetcode-cn.com/problems/reverse-integer/" title="整数反转">点我</a></h3>
+<h3>题目描述</h3>
+<p>
+    给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
+</p>
+<h3>思路</h3>
+<p>
+    就判断数字正负进行反转
+</p>
+<h3>for example</h3>
+<p>
+    示例 1:
+
+    输入: 123
+    输出: 321
+    示例 2:
+
+    输入: -123
+    输出: -321
+    示例 3:
+
+    输入: 120
+    输出: 21
+</p>
+
+</body>
+<script>
+    //自己的  本办法
+    var reverse = function(x) {
+        let result = 0;
+        let tempX;
+        if( x>= 0){
+            tempX = +x.toString().split('').reverse().join('');
+        }
+        else{
+            tempX = x.toString().slice(1).split('').reverse().join('')*(-1);
+        }
+        if(tempX >= (-2)**31 && tempX <= (2**31 -1)){
+            return tempX
+        }
+        return result
+    };
+
+    //别人
+    var other = function(x) {
+        const edeg = 2**31;
+        const max = edeg - 1;
+        const min = -edeg;
+        const result = (x > 0 ? 1 : -1) * String(x).split('').filter(x => x !== '-').reverse().join('');
+        return result > max || result < min ? 0 : result
+    };
+
+
+
+    var myAtoi = function(str) {
+        let max = 2**31 - 1;
+        let min = -(2**31);
+        let temp = str.trim();
+        let tempX = temp.replace(/\s*/,' ').split(' ');
+        let temp0 = +tempX[0];
+        if(!isNaN(temp0))return 0;
+        else{
+            if(temp0 > max){
+                return 'INT_MAX (2**31 − 1)'
+            }
+            else if(temp0 < min){
+                return 'INT_MAX (-2**31)'
+            }
+            else{
+                return temp0
+            }
+        }
+    };
+    console.log("42")
+</script>
+</html>

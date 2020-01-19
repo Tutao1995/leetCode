@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f0d7b20-f5de-42e8-93b6-1701d032a537" name="Default Changelist" comment="" />
+    <list default="true" id="2f0d7b20-f5de-42e8-93b6-1701d032a537" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo-4.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +22,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1WPaRI9PuYlmspoMgJTCXTy9yCS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -47,6 +51,8 @@
       <option name="presentableId" value="Default" />
       <updated>1579053673487</updated>
       <workItem from="1579053674748" duration="8240000" />
+      <workItem from="1579228122887" duration="12068000" />
+      <workItem from="1579398407953" duration="5393000" />
     </task>
     <servers />
   </component>
@@ -58,7 +64,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

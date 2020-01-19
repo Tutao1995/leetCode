@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二叉树</title>
+</head>
+<body>
+<h1>二叉树</h1>
+<h3>题目描述</h3>
+<p>
+
+</p>
+<h3>思路</h3>
+<p>
+    二叉树大多使用递归的方式左右两个元素向下递归
+</p>
+<h3>for example</h3>
+<p>
+
+</p>
+
+</body>
+<script>
+    // 1.计算二叉树的最大深度
+    const tree = {
+        val:'',
+        left:{
+
+        },
+        right:{
+
+        }
+    };
+
+
+    const getDepth = (root) => {
+        if(root == null) return 0;
+        return 1 + Math.max(getDepth(root.left),getDepth(root.right))
+    };
+    //将二叉树以二维数组形式展示
+    const levelOrder = (root) => {
+        let ans = [];
+        helper(root,ans,0);
+        return ans;
+    };
+    const helper = (node,ans,i) => {
+        if(node == null) return;
+        if(i === ans.length){
+            ans.push([])
+        }
+        ans[i].push(node.val);
+        helper(node.left,ans,i+1);
+        helper(node.right,ans,i+1);
+    }
+</script>
+</html>
