@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加油站</title>
+</head>
+<body>
+<h1>将有序数组转换未二叉搜索树</h1>
+<h3>地址：<a href="https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/" title="将有序数组转换未二叉搜索树">点我</a></h3>
+<h3>题目描述</h3>
+<p>
+    将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。
+
+    本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。
+</p>
+<h3>思路</h3>
+<p>
+    递归
+</p>
+<h3>for example</h3>
+<p>
+    输入：[-10,-3,0,5,9],
+    输出：[0,-3,9,-10,null,5]，
+</p>
+
+</body>
+<script>
+    function BidaryTree(val){
+        this.val = val;
+        this.left = this.right = null;
+    }
+    const sortedArrayToBST = function(array){
+        let len = array.length;
+        if(len < 1){
+            return null
+        }
+        let middle = Math.floor(array.length/2);
+        let bt = new BidaryTree(array[middle]);
+        bt.left = sortedArrayToBST(array.slice(0,middle));
+        bt.right = sortedArrayToBST(array.slice(middle+1));
+        return bt;
+    }
+    let testArr = [1,2,3,4,5];
+
+</script>
+</html>

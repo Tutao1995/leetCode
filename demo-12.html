@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>判定是否互为字符重排</title>
+</head>
+
+<body>
+    <h1>给定两个字符串 s1 和 s2，请编写一个程序，确定其中一个字符串的字符重新排列后，能否变成另一个字符串。</h1>
+    <h3>地址：<a href="https://leetcode-cn.com/problems/check-permutation-lcci/"
+            title="给定两个字符串 s1 和 s2，请编写一个程序，确定其中一个字符串的字符重新排列后，能否变成另一个字符串。">点我</a></h3>
+    <h3>题目描述</h3>
+    <p>
+        给定两个字符串 s1 和 s2，请编写一个程序，确定其中一个字符串的字符重新排列后，能否变成另一个字符串。
+    </p>
+    <h3>思路</h3>
+    <p>
+
+    </p>
+    <h3>for example</h3>
+    <p>示例 1：
+
+        输入: s1 = "abc", s2 = "bca"
+        输出: true
+    </p>
+
+</body>
+<script>
+    var CheckPermutation = function (s1, s2) {
+        let l1 = s1.length,
+            l2 = s2.length;
+        if (l1 == 1 && l2 == 1) {
+            return s1 === s2
+        }
+        if (l1 !== l2) {
+            return false
+        } else {
+            let obj = {},
+                obj1 = {};
+            for (let i = 0; i < s1.length; i++) {
+                if (!obj[s1[i]]) {
+                    obj[s1[i]] = 0
+                } else {
+                    obj[s1[i]]++
+                }
+            }
+            for (let j = 0; j < s2.length; j++) {
+                if (!obj1[s2[j]]) {
+                    obj1[s2[j]] = 0
+                } else {
+                    obj1[s2[j]]++
+                }
+            }
+            let result = true;
+            for (let key in obj) {
+                if (obj[key] == obj1[key]) {
+                    result = true
+                } else {
+                    result = false
+                }
+            }
+            return result
+        }
+    };
+
+    var CheckPermutation1 = function (s1, s2) {
+        let l1 = s1.length,
+            l2 = s2.length;
+        if (l1 == 1 && l2 == 1) {
+            return s1 === s2
+        }
+        if (l1 !== l2) {
+            return false
+        } else {
+            let obj = {},
+                obj1 = {};
+            for (let i = 0; i < s1.length; i++) {
+                if (!obj.hasOwnProperty(s1[i])) {
+                    obj[s1[i]] = 0
+                } else {
+                    obj[s1[i]] = +obj[s1[i]] + 1
+                }
+            }
+            for (let j = 0; j < s2.length; j++) {
+                if (!obj1.hasOwnProperty(s2[j])) {
+                    obj1[s2[j]] = 0
+                } else {
+                    obj1[s2[j]] = +obj1[s2[j]] + 1
+                }
+            }
+            console.log(obj,"obj",obj1,"obj1")
+            let result = true;
+            for (let key in obj) {
+                if (obj1.hasOwnProperty(key) && (obj[key] === obj1[key])) {
+                    result = true
+                } else {
+                    return false
+                }
+            }
+            return result
+        }
+    };
+    console.log(CheckPermutation1("jzvthzihsvghjhbrpfhdwixmyaxjrdzfvnhpmyrbqjpdffykqgahgzpjwvouurr",
+"hhqhxjyrghjjsmduaxppwrqkikqnfdrzjowapehtbyrgrfyprrfrebzduxvvhhu"))
+</script>
+
+</html>

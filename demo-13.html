@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>URL化</title>
+</head>
+
+<body>
+    <h1>URL化。编写一种方法，将字符串中的空格全部替换为%20。假定该字符串尾部有足够的空间存放新增字符，并且知道字符串的“真实”长度。（注：用Java实现的话，请使用字符数组实现，以便直接在数组上操作。）</h1>
+    <h3>地址：<a href="https://leetcode-cn.com/problems/string-to-url-lcci"
+            title="给定两个字符串 s1 和 s2，请编写一个程序，确定其中一个字符串的字符重新排列后，能否变成另一个字符串。">点我</a></h3>
+    <h3>题目描述</h3>
+    <p>
+        URL化。编写一种方法，将字符串中的空格全部替换为%20。假定该字符串尾部有足够的空间存放新增字符，并且知道字符串的“真实”长度。（注：用Java实现的话，请使用字符数组实现，以便直接在数组上操作。）
+    </p>
+    <h3>思路</h3>
+    <p>
+
+    </p>
+    <h3>for example</h3>
+    <p>示例 1：
+
+        输入："Mr John Smith    ", 13
+        输出："Mr%20John%20Smith"
+    </p>
+
+</body>
+<script>
+  //  substr(startIndex,length)    substring(index1,index2)   从小的index  到大的index   前闭后开   slice（startindex, endindex） 前闭后开
+    function replaceEmpty(str,len){
+      let tempStr = str.substr(0,len);
+      return tempStr.replace(/\s/g,'%20')
+    }
+    console.log(replaceEmpty("Mr John Smith    ", 13))
+</script>
+
+</html>

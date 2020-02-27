@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>lettcode  刷题</title>
+</head>
+
+<body>
+    <h1>两数相加</h1>
+    <h3>地址：<a href="https://leetcode-cn.com/problems/add-two-numbers/"
+            title="两数相加">点我</a></h3>
+    <h3>题目描述</h3>
+    <p>
+        给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
+
+        如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。
+
+        您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
+
+    </p>
+    <h3>思路</h3>
+    <p>
+        加法器  进位 用变量来接受 
+        我们使用变量来跟踪进位，并从包含最低有效位的表头开始模拟逐位相加的过程。
+    </p>
+    <h3>for example</h3>
+    <p>
+        输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
+        输出：7 -> 0 -> 8
+        原因：342 + 465 = 807
+    </p>
+
+</body>
+<script>
+    //总结    1.变量值的转换  2.进位器值的变化逻辑   3.循环的条件  两个值都不能为空      
+    //链表结构
+    function ListNode(val) {
+        this.val = val;
+        this.next = null;
+    }
+    
+    function getSum(l1,l2){
+        let init = new ListNode(0),cur = init;
+        let p = l1,q = l2,carry = 0;
+        while(p!=null || q !=null){
+            let x = p == null ? 0 : p.val,y = q == null ? 0 : q.val;
+            let sum = x + y + carry;
+            carry = sum > 9 ? 1 : 0;
+            cur.next = new ListNode(sum % 10);
+            cur = cur.next;
+            if(p!== null) p = p.next;
+            if(q!== null) q = q.next;
+        }
+        if(carry == 1){
+            cur.next = new ListNode(carry)
+        }
+        return init.next
+    }
+    let l1 = {
+        val:2,
+        next:{
+            val:4,
+            next:{
+                val:3,
+                next:null
+            }
+        }
+        
+    };
+    let l2 = {
+        val:5,
+        next:{
+            val:6,
+            next:{
+                val:4,
+                next:null
+            }
+        }
+    }
+    console.log(getSum(l1,l2))
+    
+</script>
+
+</html>

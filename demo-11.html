@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现一个算法，确定一个字符串 s 的所有字符是否全都不同。</title>
+</head>
+<body>
+<h1>实现一个算法，确定一个字符串 s 的所有字符是否全都不同。</h1>
+<h3>地址：<a href="https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/" title="实现一个算法，确定一个字符串 s 的所有字符是否全都不同。">点我</a></h3>
+<h3>题目描述</h3>
+<p>
+    实现一个算法，确定一个字符串 s 的所有字符是否全都不同。
+</p>
+<h3>思路</h3>
+<p>
+    去重判断长度是否相等
+</p>
+<h3>for example</h3>
+<p>
+    输入: s = "leetcode"
+    输出: false 
+</p>
+
+</body>
+<script>
+    var isUnique = function(astr) {
+        return [...new Set(astr.split(''))].length === astr.length
+    };
+
+</script>
+</html>
