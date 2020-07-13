@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>lettcode  刷题</title>
+    
+</head>
+
+<body>
+    <h1>无重复字符的最长子串</h1>
+    <h3>地址：<a href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/"
+            title="无重复字符的最长子串">点我</a></h3>
+    <h3>题目描述</h3>
+    <p>
+        给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+    </p>
+    <h3>思路</h3>
+    <p>
+        加法器  进位 用变量来接受 
+        我们使用变量来跟踪进位，并从包含最低有效位的表头开始模拟逐位相加的过程。
+    </p>
+    <h3>for example</h3>
+    <p>
+        输入: "abcabcbb"
+        输出: 3 
+        解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+    </p>
+</body>
+<script>
+    //第一种
+    function lengthOfLongestSubstring(s) {
+        if(s.length < 2)return s.length
+        let ans = 0;
+        for(let i=0;i<s.length;i++){
+            for(let j=i+1;j<=s.length;j++){
+                if(unique(s,i,j)){
+                    ans = Math.max(ans,j-i)
+                }
+            }
+        }
+        return ans
+    }
+    function unique(s,i,j){
+        let temp = s.slice(i,j);
+        let tempStr = [...new Set(temp.split(''))];
+        return temp.length == tempStr.length
+    }
+   
+    //第二种
+    function lengthOfLongestSubstring1(s) {
+        let setArr = new Set();
+        let i = 0,j = 0,ans = 0, n = s.length;
+        while(i<n&&j<n){
+            if(!setArr.has(s[i])){
+                setArr.add(s[i++]);
+                ans = Math.max(ans,i-j)
+            }
+            else{
+                setArr.delete(s[j++])
+            }
+            console.log(setArr,i,j,ans)
+        }
+        
+        return ans
+    }
+    console.log(lengthOfLongestSubstring1("abcadef"))
+</script>
+
+</html>

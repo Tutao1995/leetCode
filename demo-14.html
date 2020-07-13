@@ -4,6 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <title>lettcode  刷题</title>
+    <style>
+        input[type=search]{
+            border-radius: 5px;
+            border: 1px solid #ebebeb;
+            height: 30px;
+            padding-left: 4px;
+            outline: none;
+        }
+        input[type=search]::-webkit-input-placeholder{
+            color: #999;
+        }
+        input[type=search]::-webkit-search-cancel-button{
+            -webkit-appearance: none;
+            position: relative;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background-color: #EBEBEB;
+        }
+
+        input[type=search]::-webkit-search-cancel-button::after{
+            position: absolute;
+            content: 'x';
+            left: 25%;
+            top: -12%;
+            font-size: 20px;
+            color: #111;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,7 +59,9 @@
         输出：7 -> 0 -> 8
         原因：342 + 465 = 807
     </p>
-
+    <form>
+        <input type="search" placeholder="请输入搜索内容" results="5">
+    </form>
 </body>
 <script>
     //总结    1.变量值的转换  2.进位器值的变化逻辑   3.循环的条件  两个值都不能为空      

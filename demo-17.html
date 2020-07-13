@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态规划详解</title>
+    <style>
+        h1{
+            color: transparent;
+            text-shadow: 0 0 2px rgba(0, 0, 0, .5);
+        }
+        .loading:after{
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+            content: "\2026";
+            animation: ellipsis 2s infinite;
+        }
+        @keyframes ellipsis {
+            from{
+                width: 2px;
+            }
+            to{
+                width: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>
+            动态规划问题：求最值问题      核心问题：穷举    列举出所有的可行性，然后找出最优解
+        </h1>
+    </div>
+    <div class="loading"></div>
+</body>
+<script>
+    //动态规划问题：求最值问题      核心问题：穷举    列举出所有的可行性，然后找出最优解
+    //备忘录  DP table   优化穷举过程    最优子结构   状态转移方程
+    //  明确[状态] -> 定义DP数组/函数的的含义 -> 明确[选择] -> 明确 [base case]
+    //常例   斐波那契额数列
+    //1.暴力递归
+    //递归算法时间复杂度 = 子问题个数 * 解决每个子问题所需时间
+    // 存在重叠子问题   重复计算了
+    //暴力 递归
+    function fib(n) {
+        if(+n === 1 || +n === 2 ) return 1;
+        return  fib(n - 1) + fib(n - 2)
+    }
+    //备忘录  用一个数组存放查询过的值   自顶向下
+    function fibB(n) {
+        if(n < 1) return 0;
+        let arr = new Array(n+1).fill(0);
+        return helper(arr,n)
+    }
+
+    function helper(arr, n) {
+        if(n === 1 || n === 2)return 1;
+        if(arr[n] !== 0) return arr[n];
+        arr[n] = helper(arr,n-1) + helper(arr,n-2);
+        console.log(arr,"arr");
+        return  arr[n]
+    }
+
+    // 自底向顶
+    function fibDP(n) {
+        let arr = new Array(n+1).fill(0);
+        arr[1] = arr[2] = 1;
+        for(let i = 3;i<n+1;i++){
+            arr[i] = arr[i-1] + arr[i-2]
+        }
+        return arr[n]
+    }
+    //优化
+    function fibDP2(n) {
+        if(n === 1 || n === 2) return 1;
+        let prev = 1, curr = 1;
+        for(let i = 3;i<n+1;i++){
+            let sum = prev + curr;
+            prev = curr;
+            curr = sum;
+        }
+        return curr;
+    }
+    console.log(fibDP2(20));
+    //凑零钱问题
+    //给你k种面值的硬币，面值分别为c1, c2 ... ck，每种硬币的数量无限，再给一个总金额amount，问你最少需要几枚硬币凑出这个金额，如果不可能凑出，算法返回 -1
+    //1.暴力 递归
+    const coinChangeDigui = (conins, amount) => {
+        function dp(n){
+            if(n < 0) return -1
+            if(n === 0) return 0
+            let res = Infinity
+            for(let coin of conins){
+                let subProblem = dp(n-coin);
+                if(subProblem === -1) continue
+                res = Math.min(subProblem+1,res)
+            }
+            return res === Infinity ? -1 : res
+        }
+        return dp(amount)
+    }
+    console.log(coinChangeDigui([1,2,4],10),"coinChangeDigui")
+    //2.备忘录   用数组存  如果存在就直接数据获取
+    const coinChangeDP = (conins, amount) => {
+        let memory = new Array(amount+1).fill(0);
+        function dp(n){
+            if(memory.includes(n)) return memory[n]
+            if(n < 0) return -1
+            if(n === 0) return 0
+            let res = Infinity
+            for(let coin of conins){
+                let subProblem = dp(n-coin);
+                if(subProblem === -1) continue
+                res = Math.min(subProblem+1,res)
+            }
+            return memory[n] = res === Infinity ? -1 : res
+        }
+        return dp(amount)
+    }
+    console.log(coinChangeDP([1,2,4],10),"coinChangeDigui")
+    //自底向上的dp数组迭代
+    const coinChangeDPBottomToTop = (conins, amount) => {
+        let memory = new Array(amount+1).fill(amount+1);
+        memory[0] = 0;
+        for(let i=0;i<memory.length;i++){
+            for(let coin of conins){
+                if(i-coin < 0) continue
+                memory[i] = Math.min(memory[i],1+memory[i-coin])
+            }
+        }
+        return (memory[amount] == amount + 1) ? -1 : memory[amount];
+    }
+    console.log(coinChangeDPBottomToTop([2],10),"coinChangeDPBottomToTop")
+    const coinChange = (coins, amount) => {
+        // 初始化备忘录,用Infinity填满备忘录，Infinity说明该值不可以用硬币凑出来
+        const dp = new Array(amount + 1).fill(Infinity)
+        // 设置初始条件为 0
+        dp[0] = 0
+        for (var i = 1; i <= amount; i++) {
+            for (const coin of coins) {
+                // 根据动态转移方程求出最小值
+                if (coin <= i) {
+                    dp[i] = Math.min(dp[i], dp[i - coin] + 1)
+                }
+            }
+        }                                                           
+        // 如果 `dp[amount] === Infinity`说明没有最优解返回-1,否则返回最优解
+        return dp[amount] === Infinity ? -1 : dp[amount]
+    }
+    console.log(coinChange([1,2,4],10),"124")
+    //重新认识动态规划问题
+    //把多阶段过程转换为一系列单阶段问题 ， 利用各阶段之间的关系， 逐个求解的优化方法
+    const getSumWaysOfMoveGrid = function (m,n) {
+        // 初始化m x n的二维数组 table[i][j] 表示走到 table[i][j] 有几种方法
+        const table = new Array(m).fill(0);
+        for(let i = 0; i < m ;i++){
+            table[i] = new Array(n).fill(0);
+        }
+
+        // dp过程
+        for(let i = 0; i < m ;i++){
+            for(let j = 0; j < n ;j++){
+                if(i === 0 || j === 0){
+                    // 处理侧边格子
+                    table[i][j] = 1;
+                } else{
+                    table[i][j] = table[i-1][j] + table[i][j-1]
+                }
+            }
+        }
+
+        return table[m-1][n-1];
+    };
+
+    console.log(getSumWaysOfMoveGrid(3, 3) )//6
+
+
+
+
+
+
+
+
+</script>
+</html>
