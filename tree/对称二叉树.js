@@ -59,7 +59,22 @@ var isSymmetric = function (root) {
     // 不满足则调用check判断左右子树
 };
 
+/* 
+    递归
 
+*/
+
+var digui = (root) => {
+    if(!root) return true
+    var isEqual = function(left, right) {
+        if(!left && !right) return true
+        if(!left || !right) return false
+        return left.val === right.val && 
+         isEqual(left.left, right.right) && 
+         isEqual(left.right, right.left)
+    }
+    return isEqual(root.left, root.right)
+}
 /* 
 BFS
 
