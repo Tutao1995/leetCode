@@ -44,8 +44,6 @@ var selfSearchInsert = function(nums, target) {
     return tIndex
 } 
 
-// 官方启发
-
 
 /* 
     官方 ： 二分法 
@@ -68,7 +66,7 @@ var searchInsert = (nums, target) => {
     let n = nums.length;
     let left = 0, right = n - 1, ans = n;
     while(left <= right) {
-        let mid = ((left + right) >> 1) + left;
+        let mid = (( right - left) >> 1) + left;
         if(target <= nums[mid]) {
             ans = mid;
             right = mid - 1
@@ -79,9 +77,4 @@ var searchInsert = (nums, target) => {
     return ans
 }
 
-//二分法排序
-
-var erfen = (nums) => {
-    
-}
 
