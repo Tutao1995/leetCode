@@ -239,3 +239,19 @@ const levelOrder  = (p) => {
     traversal(p, 0);
     return res
 }
+
+// 层序遍历  -> 二叉树
+const levelOrder1 = (root) => {
+    if(!root) return []
+    const res = [];
+    const tralversal = (tree, deepth) => {
+        if(tree) {
+            if(res[deepth] === undefined) res[deepth] = [];
+            res[deepth].push(tree.value);
+            tralversal(tree.left, deepth + 1);
+            tralversal(tree.right), deepth + 1;
+        }
+    }
+    tralversal(root, 0);
+    return res;
+}

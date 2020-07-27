@@ -1,92 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>最长相同前缀</title>
-</head>
-<body>
-<h1>最长相同前缀</h1>
-<h3><a href="https://leetcode.com/problems/longest-common-prefix/">点我</a></h3>
-<h3>题目描述</h3>
-<p>
-    Write a function to find the longest common prefix string amongst an array of strings.
+    <head>
+        <meta charset="UTF-8" />
+        <title>最长相同前缀</title>
+    </head>
+    <body>
+        <h1>最长相同前缀</h1>
+        <h3>
+            <a href="https://leetcode.com/problems/longest-common-prefix/"
+                >点我</a
+            >
+        </h3>
+        <h3>题目描述</h3>
+        <p>
+            Write a function to find the longest common prefix string amongst an
+            array of strings. If there is no common prefix, return an empty
+            string "".
+        </p>
+        <h3>思路</h3>
+        <p></p>
+        <h3>for example</h3>
+        <p>
+            Input: ["flower","flow","flight"] Output: "fl"
+        </p>
+    </body>
+    <script>
+        //重新认识slice  substr   subString
+        // slice: slice() 方法返回一个新的数组对象，这一对象是一个由 begin 和 end 决定的原数组的浅拷贝（包括 begin，不包括end）。原始数组不会被改变。
+        // 如果只有一个参数 则拷贝那个位置到最后；如果没得就是全部；如果负数这从后向前数
+        //substr： substr() 方法返回一个字符串中从指定位置开始到指定字符数的字符。 str.substr(start[, length])
+        // 如果只有一个参数 就是全部
+        //substring：substring() 方法返回一个字符串在开始索引到结束索引之间的一个子集, 或从开始索引直到字符串的末尾的一个子集。 str.substring(indexStart[, indexEnd])
+        // 前包括后不包括
 
-    If there is no common prefix, return an empty string "".
-</p>
-<h3>思路</h3>
-<p>
-
-</p>
-<h3>for example</h3>
-<p>
-    Input: ["flower","flow","flight"]
-    Output: "fl"
-</p>
-
-</body>
-<script>
-    //重新认识slice  substr   subString
-    // slice: slice() 方法返回一个新的数组对象，这一对象是一个由 begin 和 end 决定的原数组的浅拷贝（包括 begin，不包括end）。原始数组不会被改变。
-    // 如果只有一个参数 则拷贝那个位置到最后；如果没得就是全部；如果负数这从后向前数
-    //substr： substr() 方法返回一个字符串中从指定位置开始到指定字符数的字符。 str.substr(start[, length])
-    // 如果只有一个参数 就是全部
-    //substring：substring() 方法返回一个字符串在开始索引到结束索引之间的一个子集, 或从开始索引直到字符串的末尾的一个子集。 str.substring(indexStart[, indexEnd])
-    // 前包括后不包括
-
-
-    //浮点数转化未整数    Math.ceil()  Math.floor()   Math.round()   xxx.xxx | 0     ~~xxx.xxx
-    // 字符串转换为 数字    Number(xxxx)   +xxxx
-    // 数字转换为字符串     xxx.toString()  xxx+''
-    // 删除整数的最后一位    xxx/10 | 0
-    const array = ["11","1111","152","123"];
-    //自己版本
-    const findLongestPrefix = (arr) => {
-        if(arr.length === 0){
-            return ''
-        }
-        if(arr.length === 1){
-            return array[0]
-        }
-        let array = arr.map( item => {
-            return item.toString();
-        });
-        let value = array[0];
-        let rValue = '';
-        for(let j=0;j<value.length;j++){
-            let compare = value.substr(0,j+1);
-            let resultFlag = array.every( item => {
-                return item.startsWith(compare)
+        //浮点数转化未整数    Math.ceil()  Math.floor()   Math.round()   xxx.xxx | 0     ~~xxx.xxx
+        // 字符串转换为 数字    Number(xxxx)   +xxxx
+        // 数字转换为字符串     xxx.toString()  xxx+''
+        // 删除整数的最后一位    xxx/10 | 0
+        const array = ["11", "1111", "152", "123"];
+        //自己版本
+        const findLongestPrefix = (arr) => {
+            if (arr.length === 0) {
+                return "";
+            }
+            if (arr.length === 1) {
+                return array[0];
+            }
+            let array = arr.map((item) => {
+                return item.toString();
             });
-            if(resultFlag) {
-                rValue = compare
+            let value = array[0];
+            let rValue = "";
+            for (let j = 0; j < value.length; j++) {
+                let compare = value.substr(0, j + 1);
+                let resultFlag = array.every((item) => {
+                    return item.startsWith(compare);
+                });
+                if (resultFlag) {
+                    rValue = compare;
+                }
             }
-        }
-        return rValue
-    };
-    //别人版本
-    const longestCommonPrefix1 = function(strs) {
-        let re = '';
-        if (!strs.length) return re;
-        for (let j=0;j<strs[0].length;j++){//第j位
-            for (let i=1;i<strs.length;i++){//第i个
-                if (strs[i][j]!==strs[0][j]) return re
+            return rValue;
+        };
+        //别人版本
+        const longestCommonPrefix1 = function (strs) {
+            let re = "";
+            if (!strs.length) return re;
+            for (let j = 0; j < strs[0].length; j++) {
+                //第j位
+                for (let i = 1; i < strs.length; i++) {
+                    //第i个
+                    if (strs[i][j] !== strs[0][j]) return re;
+                }
+                re += strs[0][j];
             }
-            re += strs[0][j];
-        }
-        return re;
-    };
-    const longestCommonPrefix2 = function(strs) {
-        let t = strs[0] || '';
-        let i = 1;
-        while(t && i < strs.length) {
-            if(strs[i].indexOf(t) !== 0) {
-                t = t.slice(0, t.length - 1);
-            } else {
-                i++;
+            return re;
+        };
+        const longestCommonPrefix2 = function (strs) {
+            let t = strs[0] || "";
+            let i = 1;
+            while (t && i < strs.length) {
+                if (strs[i].indexOf(t) !== 0) {
+                    t = t.slice(0, t.length - 1);
+                } else {
+                    i++;
+                }
             }
-        }
-        return t;
-    };
-    console.log(findLongestPrefix(array));
-</script>
+            return t;
+        };
+        console.log(findLongestPrefix(array));
+    </script>
 </html>
