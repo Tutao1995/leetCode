@@ -78,15 +78,43 @@ var selfIsSubsequence = function (s, t) {
         index = 0,
         str = t.slice(0);
     for (let i = 0; i < s.length; i++) {
-      let _index = str.indexOf(s[i])
-      if( _index > -1) {
-        str = str.slice(_index + 1);
-        index ++
-      } else {
-        
-      }
+        let _index = str.indexOf(s[i]);
+        if (_index > -1) {
+            str = str.slice(_index + 1); //顺序
+            index++;
+        } else {
+        }
     }
-    return index >= sLen
+    return index >= sLen;
 };
 
-selfIsSubsequence("bb","ahbgdc")
+selfIsSubsequence("bb", "ahbgdc");
+
+export default {
+    init: function () {
+        const AK = "vcM72RPfaB2Wqcqq7QBli94s4GUyOiWY";
+        const BMapURL =
+            "https://api.map.baidu.com/api?v=3.0&ak=" +
+            AK +
+            "&s=1&callback=onBMapCallback";
+        return new Promise((resolve, reject) => {
+            // 如果已加载直接返回
+            // if (typeof BMap !== 'undefined') {
+            // resolve(BMap)
+            // return true
+            // }
+            // 百度地图异步加载回调处理
+            window.onBMapCallback = function () {
+                console.log("百度地图脚本初始化成功...");
+                // eslint-disable-next-line
+                resolve(BMap);
+            };
+
+            // 插入script脚本
+            let scriptNode = document.createElement("script");
+            scriptNode.setAttribute("type", "text/javascript");
+            scriptNode.setAttribute("src", BMapURL);
+            document.body.appendChild(scriptNode);
+        });
+    },
+};
