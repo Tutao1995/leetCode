@@ -72,6 +72,25 @@ const climStairs = (n) => {
     }
     return dp[n];
 };
+/*
+零钱兑换
+连接： https://leetcode-cn.com/problems/coin-change/
+描述：给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。
+
+实例：
+1.
+输入: coins = [1, 2, 5], amount = 11
+输出: 3
+解释: 11 = 5 + 5 + 1
+
+2.
+输入: coins = [2], amount = 3
+输出: -1
+
+思路：
+
+*/
+const coinChange = (coins, amount) => {};
 
 /*
 2. 打家劫舍
@@ -134,7 +153,7 @@ const robber = (numbers) => {
 };
 
 /*
-2. 买卖股票的最佳时机
+3. 买卖股票的最佳时机
 连接： https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/
 描述：
 给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。

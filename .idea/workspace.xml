@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f0d7b20-f5de-42e8-93b6-1701d032a537" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo-14.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo-9.html" afterDir="false" />
-    </list>
+    <list default="true" id="2f0d7b20-f5de-42e8-93b6-1701d032a537" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +23,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/Git_workplace/连接项目" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
@@ -61,6 +57,7 @@
       <workItem from="1585279159667" duration="5781000" />
       <workItem from="1585530462607" duration="821000" />
       <workItem from="1587091216912" duration="6432000" />
+      <workItem from="1597130944289" duration="28000" />
     </task>
     <servers />
   </component>

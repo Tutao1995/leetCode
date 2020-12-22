@@ -32,8 +32,11 @@
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
   // html格式化
   "vetur.format.defaultFormatter.html": "prettier",
+//   "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
+  "eslint.autoFixOnSave": false,
+// "editor.codeActionsOnSaveTimeout": 5000,
   // 使用eslint 風格使用standard 進行代碼規則限制
-  "eslint.autoFixOnSave": true,
+//   "eslint.autoFixOnSave": true,
   "eslint.validate": [
     "javascript",
     {
@@ -70,5 +73,8 @@
   },
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+},
+"editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+}
 }
