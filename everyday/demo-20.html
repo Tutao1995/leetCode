@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .parent {
+                width: 200px;
+                height: 200px;
+                background: linear-gradient(135deg, orange 60%, cyan);
+            }
+            .parent:hover {
+                outline: none;
+            }
+            /* .child {
+                width: 200px;
+                height: 200px;
+                float: left;
+                background: red;
+                margin-left: 10px;
+            } */
+        </style>
+    </head>
+    <body>
+        <!--
+
+
+            BFC 解决什么问题
+            1. 清除浮动： 解决浮动元素令其父元素高度坍塌的问题  给父级元素：display:flow-root | overflow: auto
+            2. 解决两栏自适应布局问题
+            3. 解决外边距坍塌/重合问题
+            4. 解决元素被浮动元素覆盖的问题
+
+            常见触发BFC的方式
+            1. position：absolute | fixed
+            2. float： !none
+            3. overflow: !visible
+            4. display: flow-root | inline-block | flex | table-cell
+         -->
+
+        <div class="parent">
+            <!-- <div class="child">1</div>
+            <div class="child">2</div>
+            <div class="child">3</div>
+            <div class="child">4</div> -->
+        </div>
+    </body>
+</html>
