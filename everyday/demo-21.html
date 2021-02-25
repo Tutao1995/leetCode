@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        /*
+        转置矩阵
+        给一个二维数组matrix,返回转置矩阵
+        示例：
+            输入；matrix = [[1,2,3],[4,5,6],[7,8,9]]
+            输出： [[1,4,7],[2,5,8],[3,6,9]]
+        */
+        const transpose = function (matrix) {
+            let outlen = matrix.length;
+            let inlen = matrix[0].length;
+            let ret = [];
+            for (let j = 0; j < inlen; j++) {
+                for (let i = 0; i < outlen; i++) {
+                    if (ret[j]) {
+                        ret[j][i] = matrix[i][j];
+                    } else {
+                        ret[j] = [matrix[i][j]];
+                    }
+                }
+            }
+
+            return ret;
+        };
+        let test = [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9],
+        ];
+        console.log(transpose(test));
+    </script>
+</html>
