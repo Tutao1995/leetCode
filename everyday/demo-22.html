@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #main {
+                display: flex;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <div class="div1">我是div1</div>
+            <div class="div2">我是div1</div>
+            <div class="div3">我是div1</div>
+        </div>
+    </body>
+    <script>
+        /*
+           比特位计数
+           给定一个非负整数 num。对于 0 ≤ i ≤ num 范围中的每个数字 i ，计算其二进制数中的 1 的数目并将它们作为数组返回。
+           输入: 2
+           输出: [0,1,1]
+
+           输入: 5
+           输出: [0,1,1,2,1,2]
+        */
+
+        const countBits = function (num) {
+            let ret = [];
+            let start = 0;
+            while (start <= num) {}
+        };
+        const listFormat = (value) => {
+            const list = value.slice();
+            const map = {};
+            const result = [];
+            let i = 0;
+            while (i < list.length) {
+                const parent = map[list[i].itemPid];
+                map[list[i].id] = { cIndex: 0 };
+                if (parent) {
+                    let index;
+                    result.forEach((item, idx) => {
+                        if (item.id === list[i].itemPid) index = idx;
+                    });
+                    index = parent.cIndex + 1 + index;
+                    result.splice(index, 0, list[i]);
+                    map[list[i].itemPid].cIndex++;
+                } else {
+                    result.push(list[i]);
+                }
+                i++;
+            }
+            return result;
+        };
+        const test = [
+            {
+                id: 1,
+                itemPid: "",
+            },
+            {
+                id: 2,
+                itemPid: "",
+            },
+            {
+                id: 3,
+                itemPid: "",
+            },
+            {
+                id: 4,
+                itemPid: "",
+            },
+            {
+                id: 5,
+                itemPid: 3,
+            },
+            {
+                id: 6,
+                itemPid: 5,
+            },
+            {
+                id: 7,
+                itemPid: 3,
+            },
+            {
+                id: 8,
+                itemPid: 1,
+            },
+        ];
+        console.log(listFormat(test));
+
+        function getTreeLevel(tree, index) {
+            tree.level = index;
+            if (tree.children) {
+                tree.children.forEach((item) => {
+                    getTreeLevel(item, index + 1);
+                });
+            }
+        }
+
+        let testA = {
+            children: [
+                {
+                    id: 1,
+                    children: [
+                        {
+                            id: 2,
+                        },
+                    ],
+                },
+                {
+                    id: 3,
+                    children: [
+                        {
+                            id: 4,
+                            children: [
+                                {
+                                    id: 5,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        };
+        getTreeLevel(testA, 0);
+        console.log(testA);
+    </script>
+</html>
