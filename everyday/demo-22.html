@@ -6,16 +6,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
             #main {
                 display: flex;
+            }
+            #test {
+                width: 200px;
+                height: 30px;
+                border: 1px solid #eee;
+                background: #111;
+                color: #fff;
             }
         </style>
     </head>
     <body>
-        <div id="main">
+        <!-- <div id="main">
             <div class="div1">我是div1</div>
             <div class="div2">我是div1</div>
             <div class="div3">我是div1</div>
+        </div> -->
+        <div style="padding: 100px">
+            <div id="test">woshitest</div>
         </div>
     </body>
     <script>
@@ -129,5 +143,30 @@
         };
         getTreeLevel(testA, 0);
         console.log(testA);
+        document
+            .getElementById("test")
+            .addEventListener("mousedown", function (ev) {
+                const { clientX, clientY } = ev;
+                const {
+                    offsetLeft,
+                    offsetTop,
+                    offsetWidth,
+                    offsetHeight,
+                    parentElement,
+                } = ev.currentTarget;
+                console.log(
+                    ev.target.getBoundingClientRect(),
+                    "ev.target.getBoundingClientRect();"
+                );
+                console.log(clientX, clientY, "clientX, clientY");
+                console.log(
+                    offsetLeft,
+                    offsetTop,
+                    offsetWidth,
+                    offsetHeight,
+                    parentElement,
+                    "offsetLeft, offsetTop,offsetWidth,offsetHeight,parentElement,"
+                );
+            });
     </script>
 </html>
