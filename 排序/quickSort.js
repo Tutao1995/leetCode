@@ -19,10 +19,12 @@ const partition = (arr, start, end) => {
         j = end;
     let pivot = arr[start];
     while (i <= j) {
-        while (i < end && arr[i] <= pivot) {  // 保证 start - i 的值是小于 pivot的
+        while (i < end && arr[i] <= pivot) {
+            // 保证 start - i 的值是小于 pivot的
             i++;
         }
-        while (j > start && arr[j] > pivot) { // 保证 j - end 的值是大于 pivot的
+        while (j > start && arr[j] > pivot) {
+            // 保证 j - end 的值是大于 pivot的
             j--;
         }
         if (i >= j) {
@@ -44,7 +46,21 @@ const shuffle = (arr) => {
     arr.sort(() => 0.5 - Math.random());
 };
 
-const arr = [9, 8 ,];
-shuffle(arr);
-quickSort(arr);
-console.log(arr);
+const quickSort2 = (arr) => {
+    const len = arr.length;
+    if (len < 2) return arr;
+    const index = Math.floor(len / 2);
+    const pivot = arr.splice(index, 1)[0];
+    const left = [];
+    const right = [];
+    for (let i = 0; i < arr.length; i++) {
+        const item = arr[i];
+        item > pivot ? right.push(item) : left.push(item);
+    }
+    return quickSort2(left).concat([pivot], quickSort2(right));
+};
+
+const arr = [9, 8, 2, 3, 6, 5];
+// shuffle(arr);
+// quickSort(arr);
+console.log(quickSort2(arr));
