@@ -50,7 +50,25 @@ const quickSort2 = (arr) => {
     const len = arr.length;
     if (len < 2) return arr;
     const index = Math.floor(len / 2);
-    const pivot = arr.splice(index, 1)[0];
+    let pivot = null;
+    const left = [];
+    const right = [];
+    for (let i = 0; i < arr.length; i++) {
+        const item = arr[i];
+        index === i
+            ? (pivot = item)
+            : item > pivot
+            ? right.push(item)
+            : left.push(item);
+    }
+    return quickSort2(left).concat([pivot], quickSort2(right));
+};
+
+const quickSort3 = (arr) => {
+    const len = arr.length;
+    if (len < 2) return arr;
+    const index = Math.floor(len / 2);
+    let pivot = arr.splice(index, 1)[0];
     const left = [];
     const right = [];
     for (let i = 0; i < arr.length; i++) {
@@ -60,7 +78,18 @@ const quickSort2 = (arr) => {
     return quickSort2(left).concat([pivot], quickSort2(right));
 };
 
-const arr = [9, 8, 2, 3, 6, 5];
+let arr = [];
+for (let i = 0; i < 10000; i++) {
+    arr.push(10000 - i);
+}
 // shuffle(arr);
 // quickSort(arr);
-console.log(quickSort2(arr));
+const startTime = new Date().getTime();
+console.log(new Date(), "before");
+quickSort2(arr);
+console.log(new Date().getTime() - startTime, "end1");
+
+const startTime2 = new Date().getTime();
+console.log(new Date(), "before");
+quickSort3(arr);
+console.log(new Date().getTime() - startTime2, "end2");
