@@ -20,14 +20,22 @@
 var binaryTreePaths = function (root) {
     let result = [];
     const loop = (root, prev) => {
-        if (root === null) return "";
+        if (root === null) {
+            return;
+        }
         if (prev !== "") {
             prev = prev + "->" + root.val;
         } else {
-            prev = root.val;
+            prev = prev + root.val;
         }
-        const lNode = loop(root.left, prev);
-        const rNode = loop(root.right, prev);
+        if (root.left === null && root.right === null) {
+            result.push(prev);
+            return;
+        }
+        root.left !== null && loop(root.left, prev);
+        root.right !== null && loop(root.right, prev);
     };
+    loop(root, "");
+    return result;
 };
 // @lc code=end
