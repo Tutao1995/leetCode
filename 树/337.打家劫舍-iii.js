@@ -23,9 +23,11 @@
     对于不选择来说，那么其子节点可以选择也可以不选择。
     该节点可以对外输出的值就是上面两种情况中的最大值。
 */
+const map = new Map(); // 优化，避免重复遍历
 var rob = function (root) {
     const loop = (root) => {
         if (root === null) return [0, 0]; // [不抢劫， 抢劫]
+        if (map.get(root)) return map.get(root); // 优化，避免重复遍历
         let lSubValue = loop(root.left);
         let rSubValue = loop(root.right);
         // 抢劫 那么子节点的就不能抢
@@ -34,8 +36,9 @@ var rob = function (root) {
         let notRobValue =
             Math.max(lSubValue[0], lSubValue[1]) +
             Math.max(rSubValue[0], rSubValue[1]);
-        console.log(notRobValue, robValue);
-        return [notRobValue, robValue];
+        const result = [notRobValue, robValue];
+        map.set(root, result); // 优化，避免重复遍历
+        return result;
     };
     const result = loop(root);
     return Math.max(result[0], result[1]);
