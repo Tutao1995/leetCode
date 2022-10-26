@@ -10,21 +10,21 @@ function ListNode() {
 }
 
 const mergeTwoLists = (l1, l2) => {
-    let head = new ListNode();
-    let cur = head;
+    let dummy = new ListNode();
+    let cur = dummy;
     while (l1 && l2) {
         if (l1.value <= l2.value) {
-            cur.value = l1.value;
+            cur = l1;
             l1 = l1.next;
         } else {
-            cur.value = l2.value;
+            cur = l2;
             l2 = l2.next;
         }
         // “针”在串起一个结点后，也会往前一步
         cur = cur.next;
     }
     cur.next = l1 !== null ? l1 : l2;
-    return head.next;
+    return dummy.next;
 };
 
 /*
@@ -122,17 +122,41 @@ const reverseList = (list) => {
 反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。
 
 */
+/**
+ *分隔链表
+ *
+ */
+
+function partition(list, value) {
+    const dummy1 = new ListNode();
+    const dummy2 = new ListNode();
+    let p1 = dummy1;
+    let p2 = dummy2;
+    let cur = list;
+    while (cur) {
+        if (cur.value < value) {
+            p1.next = cur;
+            p1 = p1.next;
+        } else {
+            p2.next = cur;
+            p2 = p2.next;
+        }
+        cur = cur.next;
+    }
+    p1.next = dummy2.next;
+    return dummy1.next;
+}
 
 const test = {
     value: 1,
     next: {
         value: 2,
         next: {
-            value: 3,
+            value: 4,
             next: {
-                value: 4,
+                value: 3,
                 next: {
-                    value: 5,
+                    value: 2,
                     next: {
                         value: 6,
                         next: null,
@@ -143,4 +167,4 @@ const test = {
     },
 };
 
-console.log(reverseList(test));
+console.log(JSON.stringify(partition(test, 3)));
